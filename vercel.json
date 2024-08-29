@@ -1,11 +1,11 @@
 {
     "builds": [{
-        "src": "Bidding System/Bidding_System/wsgi.py",
+        "src": "Bidding_System/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     }],
     "routes": [{
         "src": "/(.*)",
-        "dest": "Bidding System/Bidding_System/wsgi.py"
+        "dest": "Bidding_System/wsgi.py"
     }]
 }
