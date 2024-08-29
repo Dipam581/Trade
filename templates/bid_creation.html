@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>TradeSquare</title>
+  <link rel="icon" href="https://static-00.iconduck.com/assets.00/trade-icon-1024x1024-mjba9mi1.png" type="image/x-icon">
+</head>
+
+<body>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container p-2 mt-2 gradient-custom-3">
+      {% comment %} <a class="p-1" style="
+            font-size: large;
+            text-decoration: underline;
+            float: inline-end;
+            color: darkblue;" href="{% url 'show_all_products' %}">View Store
+    </a> {% endcomment %}
+      <div>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary mb-3" style="background: aliceblue;">
+            <div class="container-fluid" style="background-color: white;">
+        
+                <a class="navbar-brand" href="{% url 'show_all_products' %}">
+                    <img
+                        src="https://static-00.iconduck.com/assets.00/trade-icon-1024x1024-mjba9mi1.png"
+                        height="30"
+                        alt="Logo"
+                        loading="lazy"
+                    />
+                </a>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-grow: 1; justify-content: center;">
+                    <ul class="navbar-nav mb-2 mb-lg-0" style="font-size: 20px; font-weight: 500;">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: darkturquoise;" href="{% url 'show_all_products' %}">View Store</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: darkturquoise;" href="{% url 'option_of_trading' %}">Choice</a>
+                        </li>
+                    </ul>
+                </div>
+        
+                <div class="d-flex align-items-center">
+                    <a class="link-secondary me-3" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+        
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="dropdownMenuButton"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="40"
+                                alt="Profile Image" loading="lazy" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'logout_user' %}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </div>
+    
+      <div class="row">
+        <div class="grid-container mb-3">
+          <span>
+            <h2 style="font-family: serif;font-size: 30px;">Welcome {{userContext}} 😊</h2>
+          </span>
+          <span>
+            <a href="{% url 'sell_product' %}" class="btn btn-info" style="float: right;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
+              </svg>
+            </a>
+          </span>
+        </div>    
+
+        <div class="col">
+          <label class='' style="font-family: serif;font-size: 20px;">What kind of item you want to sell!</label>
+          <input type="text" placeholder="Mac Book Air" class="form-control" name="item" id="item" required>
+
+          <label class='' style="font-family: serif;font-size: 20px;">Description</label>
+          <textarea class="form-control" placeholder="Details of the product" aria-label="With textarea" name="description" required></textarea>
+        </div>
+        <div class="col">
+          <label class='' style="font-family: serif;font-size: 20px;">Target Price</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">₹</span>
+            </div>
+            <input type="number" class="form-control" placeholder="12000.00" aria-label="Amount (to the nearest rupee)" name="amount"
+              id="amount" step="0.01" required>
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+
+          <label for="formFile" class="form-label" style="font-family: serif;font-size: 20px;">Upload image</label>
+          <input class="form-control" type="file" id="file" name="file" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info mt-2 ml-4" style="color: white;">Submit Bid</button>
+    </div>
+  </form>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <div class="container p-2 mt-2 mb-2 gradient-custom-3">
+      <h4 style="font-family: serif; color: darkblue;">Here are all the items you've listed</h4>
+      <div class="table-responsive gradient-custom-4" style="max-height: 720px; overflow-y: auto; background-color: lightyellow;">
+        <table class="table table-sm align-middle table-striped table-hover table-bordered border-primary">
+          <thead>
+            <tr>
+              <th scope="col" style="font-family: serif;font-size: 20px; width: 100px;">Sl. No.</th>
+              <th scope="col" style="font-family: serif;font-size: 20px; width: 100px;">Product Name</th>
+              <th scope="col" style="font-family: serif;font-size: 20px; width: 200px;">Product Description</th>
+              <th scope="col" style="font-family: serif;font-size: 20px; width: 100px;">Price</th>
+              <th scope="col" style="font-family: serif;font-size: 20px; width: 100px;">Image</th>
+              <th scope="col" style="font-family: serif;font-size: 20px; width: 100px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in ownerData %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td style="font-family: serif;font-size: 18px;">{{ product.name }}</td>
+              <td style="font-family: serif;font-size: 18px;">{{ product.description }}</td>
+              <td style="font-family: serif;font-size: 18px;">{{ product.price }}</td>
+              <td>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: fit-content; height: 200px;">
+              </td>
+              <td>
+                <input type="hidden" name="product_id_{{forloop.counter}}" id="product_id_{{forloop.counter}}" value="{{ product.product_id }}">
+                <button type="submit" class="btn btn-light btn-outline-danger" name="removeBid" value="removeBid_{{forloop.counter}}">Remove</button>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6">No products found for this owner.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </form>
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
+    <!-- Add Popper.js and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+         crossorigin="anonymous"></script>
+
+    <!-- MDB UI Kit JS -->
+    {% comment %} <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script> {% endcomment %}
+</body>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Adjust the gap as needed */
+  }
+  .gradient-custom-3 {
+    background: #84fab0;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    }
+
+    .gradient-custom-4 {
+      background: #f6d365;
+      
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to right, rgba(246, 211, 101, 0.5), rgba(255, 145, 77, 0.5));
+      
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to right, rgba(246, 211, 101, 0.5), rgba(255, 145, 77, 0.5));
+  }
+    
+</style>
+
+</html>

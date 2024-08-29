@@ -1,0 +1,5 @@
+Django==4.2.5         # Replace with your specific version
+psycopg2==2.9.6       # Replace with your specific version
+Pillow==9.3.0         # Replace with your specific version
+python-dotenv==1.0.0  # Replace with your specific version
+gunicorn==20.1.0      # Add gunicorn to serve the app

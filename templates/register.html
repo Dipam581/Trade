@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeSquare</title>
+    <link rel="icon" href="https://static-00.iconduck.com/assets.00/trade-icon-1024x1024-mjba9mi1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+  <body>
+    <div class='container mx-auto p-4' id ="welcome">
+        <form method="post">
+            {% csrf_token %}
+            {% comment %} <div class="row">
+                <div class="form-group col-12">
+                    <input type="text" placeholder="Name" class="form-control" name="name" id="name">
+                </div>
+            </div> 
+            <div class="row">
+                <div class="form-group col-12">
+                    <input type="text" placeholder="Email" class="form-control" name="email" id="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <input type="password" placeholder="password" class="form-control" name="password" id="password">
+                </div>
+            </div>
+
+            <p>Already have account <a href="{% url 'initiate_login' %}">Login</a></p>
+            <button class="btn btn-primary">Submit</button> {% endcomment %}
+
+            <section class="vh-100 bg-image"
+                style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+                <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                    <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Create an account- TradeSquare</h2>
+
+                            <form>
+                                {% csrf_token %}
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" required/>
+                                <label class="form-label" for="form3Example1cg">Your Name</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email" required/>
+                                <label class="form-label" for="form3Example3cg">Your Email</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="password" id="form3Example4cg" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="form3Example4cg">Password</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="password" id="repeatPassword" class="form-control form-control-lg" name="password" oninput="checkPasswords()" required/>
+                                <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                                <span id="passwordWarning" style="color: red; display: none;">Passwords do not match.</span>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                <button  type="submit" id="registerButton" data-mdb-button-init
+                                    data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" disabled>Register</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'initiate_login' %}"
+                                    class="fw-bold text-body"><u>Login here</u></a></p>
+
+                            </form>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </section>
+        </form>
+    </div>
+  </body>
+  <script>
+    function checkPasswords() {
+        var password1 = document.getElementById("form3Example4cg");
+        var password2 = document.getElementById("repeatPassword");
+        var passwordWarning = document.getElementById("passwordWarning");
+        var registerButton = document.getElementById("registerButton");
+
+        if (password1.value !== password2.value) {
+            passwordWarning.style.display = "block";
+            registerButton.disabled = true;
+        } else {
+            passwordWarning.style.display = "none";
+            registerButton.disabled = false;
+        }
+}
+</script>
+  <style>
+    .gradient-custom-3 {
+        background: #84fab0;
+        
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+        
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+        }
+        .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #84fab0;
+        
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+        
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+        }
+  </style>
+</html>

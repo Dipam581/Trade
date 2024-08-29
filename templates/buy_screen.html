@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeSquare</title>
+    <link rel="icon" href="https://static-00.iconduck.com/assets.00/trade-icon-1024x1024-mjba9mi1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class='container mx-auto p-4' id="welcome">
+        <form method="post">
+            {% csrf_token %}
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="{{ selectedData.0.image.url }}" alt="{{ selectedData.0.name }}"
+                    style="width: 500px; height: 500px;">
+            </div>
+            <div class="table-responsive" style="max-height: 720px; overflow-y: auto; background-color: lightyellow;">
+                <table class="table table-sm align-middle table-striped table-hover table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="font-family: serif; font-size: 20px;">Product Name</th>
+                            <th scope="col" style="font-family: serif; font-size: 20px;">Product Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in selectedData %}
+                        <tr>
+                            <td style="font-family: serif;font-size: 18px;">{{ product.name }}</td>
+                            <td style="font-family: serif;font-size: 18px;">{{ product.description }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No products found for this owner.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div>
+                <div class="row align-items-start">
+                    <div class="col">
+                        <label for="text" class="">Owner Email</label>
+                        {% if selectedData %}
+                        <input type="text" class="form-control" name="email" id="email" value="{{ userContext.email }}"
+                            disabled>
+                        {% else %}
+                        <input type="text" class="form-control" name="email" id="email" value="" disabled>
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <label for="text" class="">Proposed Price</label>
+                        {% if selectedData %}
+                        <input type="number" class="form-control" name="proposedPrice" id="proposedPrice"
+                            value="{{ selectedData.0.price }}" disabled>
+                        {% else %}
+                        <input type="number" class="form-control" name="proposedPrice" id="proposedPrice" value="0"
+                            disabled>
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <label for="text" class="">Your Price</label>
+                        <input type="number" class="form-control" name="updatedPrice" id="updatedPrice"
+                            value="{{ selectedData.0.price }}">
+                    </div>
+                </div>
+            </div>
+            <!-- <a href="{% url 'send_mail_Test' %}">send</a> -->
+            <button type="submit" class="btn btn-info mt-3 px-5">Bid</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    function formatPrice(price) {
+        let formattedPrice = price.toFixed(2);
+        formattedPrice = formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return formattedPrice;
+    }
+
+    let priceInput = document.getElementById('updatedPrice');
+    
+    if (priceInput) {
+        let price = parseFloat(priceInput.value.replace(/,/g, ''));
+        
+        if (!isNaN(price)) {
+            priceInput.value = price;
+        }
+    }
+</script>
+
+</html>
