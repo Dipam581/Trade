@@ -3,3 +3,4 @@ psycopg2-binary       # Replace with your specific version
 Pillow==9.3.0         # Replace with your specific version
 python-dotenv==1.0.0  # Replace with your specific version
 gunicorn==20.1.0      # Add gunicorn to serve the app
+cloudinary
