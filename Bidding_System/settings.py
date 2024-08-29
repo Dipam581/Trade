@@ -34,7 +34,7 @@ import cloudinary.api
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1",".vercel.app"]
 
@@ -99,12 +99,12 @@ WSGI_APPLICATION = 'Bidding_System.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Bids', 
-        'USER': 'postgres',
-        'PASSWORD': 'dipamghosh',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'ENGINE': os.getenv("ENGINE"),
+        'NAME': os.getenv("NAME"), 
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
+        'HOST': os.getenv("HOST"), 
+        'PORT': os.getenv("PORT"),
     }
 }
 
