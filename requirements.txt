@@ -5,3 +5,5 @@ python-dotenv==1.0.0  # Replace with your specific version
 gunicorn==20.1.0      # Add gunicorn to serve the app
 cloudinary
 razorpay
+# djongo==1.3.6
+# pymongo

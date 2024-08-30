@@ -107,6 +107,19 @@ DATABASES = {
         'PORT': os.getenv("PORT"),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'your_database_name',  # Replace with your database name
+#         'ENFORCE_SCHEMA': False,  # Optional, enforce schema or not
+#         'CLIENT': {
+#             'host': 'mongodb+srv://<username>:<password>@cluster0.mongodb.net/your_database_name?retryWrites=true&w=majority',
+#             'username': '<your_mongo_user>',
+#             'password': '<your_mongo_password>',
+#             'authMechanism': 'SCRAM-SHA-1'  # or 'SCRAM-SHA-256', depending on your setup
+#         }
+#     }
+# }
 
 
 # Password validation
